@@ -1,0 +1,29 @@
+button {
+	border-radius: 20px;
+	border: 1px solid #FF4B2B;
+	background-color: #FF4B2B;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	text-transform: uppercase;
+	transition: 30ms;
+}
+
+button:hover {
+	opacity: 0.8;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button:active {
+  transform: scale(0.8);
+}
+
+button.ghost {
+  background-color: transparent;
+  border: 1px solid white;
+	margin-top: 10px;
+}
