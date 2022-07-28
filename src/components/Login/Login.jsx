@@ -22,17 +22,31 @@ const Login = () => {
   const signIn = async (e) => {
     e.preventDefault()
 
-    const response = await axios.post(`${URL}/login`, signInData)
-    sessionStorage.setItem('token', response.data.acess_token)
+    console.log(signInData)
+    /*const response = await axios.post(`${URL}/login`, signInData)
+    sessionStorage.setItem('token', response.data.acess_token)*/
+  }
+
+  const handleChangeSignIn = ({ target }) => {
+    setSignInData({
+      ...signInData,
+      [target.name]: target.value
+    })
   }
 
   const signUp = async (e) => {
     e.preventDefault()
 
     console.log(signUpDdata)
-    const response = await axios.post(`${URL}/registro`, signUpDdata)
+    /*const response = await axios.post(`${URL}/registro`, signUpDdata)
+    console.log(response.data)*/
+  }
 
-    console.log(response.data)
+  const handleChangeSignUp = ({ target }) => {
+    setSignUpData({
+      ...signUpDdata,
+      [target.name]: target.value
+    })
   }
 
   return (
@@ -44,10 +58,18 @@ const Login = () => {
           <h2>Sign In</h2>
           <span>Use you account</span>
           <form>
-            <input type="text" placeholder="Email"/>
-            <input type="password" placeholder="Password"/>
+            <Input 
+              name='email'
+              value={signInData.email}
+              onChange={handleChangeSignIn}
+            />
+            <Input 
+              name='password'
+              value={signInData.password}
+              onChange={handleChangeSignIn}
+            />
   
-            <button id="boton">Sing In</button>
+            <Button onClick={signIn}>Sing In</Button>
           </form>
 
         </div>
@@ -56,12 +78,28 @@ const Login = () => {
           <h2>Create Account</h2>
           <span>Use your email for registration</span>
           <form>
-            <input type="text" placeholder="Name"/>
-            <input type="email" placeholder="Email"/>
-            <input type="password" placeholder="Password"/>
-            <input type="password" placeholder="Password Confirmation"/>
+            <Input 
+              name='name'
+              value={signUpDdata.name}
+              onChange={handleChangeSignUp}
+            />
+            <Input 
+              name='email'
+              value={signUpDdata.email}
+              onChange={handleChangeSignUp}
+            />
+            <Input
+             name='password'
+             value={signUpDdata.password}
+             onChange={handleChangeSignUp}
+            />
+            <Input 
+              name='password_confirmation'
+              value={signUpDdata.password_confirmation}
+              onChange={handleChangeSignUp}
+            />
   
-            <button>Sing Up</button>
+            <Button onClick={signUp}>Sign Up</Button>
           </form>
         </div>
 
@@ -70,12 +108,13 @@ const Login = () => {
             <div className="overlay-panel overlay-left">
               <h1>Welcome Back!</h1>
               <p>To keep connected with us please login with your personal info</p>
-              <button className="ghost" onClick={()=> changeClass('remove')}>Sign In</button>
+
+              <Button ghost onClick={()=> changeClass('remove')}>Sign In</Button>
             </div>
             <div className="overlay-panel overlay-right">
               <h1>Hello, Friend!</h1>
               <p>Enter your personal details and start journey with us</p>
-              <button className="ghost" onClick={()=> changeClass('add')}>Sign Up</button>
+              <Button ghost onClick={()=> changeClass('add')}>Sign Up</Button>
             </div>
           </div>
         </div>

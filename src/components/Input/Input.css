@@ -1,13 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
 input {
-  padding: 8px;
-  width: 80%;
+  padding: 8px 15px;
+  width: 70%;
   margin: 8px;
   background-color: #eee;
-  outline: none;
   border: none;
 }
 
-input:focus {
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  padding: 7px;
+input::placeholder {
+  color: #111;
+  font-family: 'Montserrat', sans-serif;
 }
