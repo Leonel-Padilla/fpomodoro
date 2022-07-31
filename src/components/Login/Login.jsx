@@ -1,52 +1,48 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import Button from '../Button/Button'
 import Input from '../Input/Input'
 import './Login.css'
 import URL from '../../URL/URL'
 import axios from 'axios'
+import useForm from '../../hooks/useForm'
 
 const Login = () => {
-  const [signUpDdata, setSignUpData]  = useState({name: '', email: '', password: '', password_confirmation: ''})
-  const [signInData, setSignInData]   = useState({email: '', password: ''})
-
+  const signInData = useForm({email: '', password: ''})
+  const signUpData = useForm({name: '', email: '', password: '', password_confirmation: ''})
   const containerRef = useRef()
 
-  const changeClass = (acction) => {
-    if(acction === 'add'){
+  const changeClass = (action) => {
+    if(action === 'add'){
       containerRef.current.classList.add('active')
     }else{
       containerRef.current.classList.remove('active')
     }
   }
 
+  // Gets called when the user press the "sign in" button.
   const signIn = async (e) => {
     e.preventDefault()
+    console.log('SingIn')
 
-    console.log(signInData)
-    /*const response = await axios.post(`${URL}/login`, signInData)
-    sessionStorage.setItem('token', response.data.acess_token)*/
+    try{
+      const response = await axios.post(`${URL}/login`, signInData)
+      sessionStorage.setItem('token', response.data.acess_token)
+    }catch(error){
+      console.log(error)
+    }
   }
 
-  const handleChangeSignIn = ({ target }) => {
-    setSignInData({
-      ...signInData,
-      [target.name]: target.value
-    })
-  }
-
+  // Gets called when the user press the "sign up" button.
   const signUp = async (e) => {
     e.preventDefault()
-
-    console.log(signUpDdata)
-    /*const response = await axios.post(`${URL}/registro`, signUpDdata)
-    console.log(response.data)*/
-  }
-
-  const handleChangeSignUp = ({ target }) => {
-    setSignUpData({
-      ...signUpDdata,
-      [target.name]: target.value
-    })
+    console.log('SingUp')
+    
+    try {
+      const response = await axios.post(`${URL}/registro`, signUpData)
+      console.log(response.data)
+    }catch(error){
+      console.log(error)
+    }
   }
 
   return (
@@ -57,19 +53,21 @@ const Login = () => {
         <div className="sign-in form-container">
           <h2>Sign In</h2>
           <span>Use you account</span>
-          <form>
+          <form
+            onSubmit={signIn}
+          >
             <Input 
               name='email'
-              value={signInData.email}
-              onChange={handleChangeSignIn}
+              value={signInData.values.email}
+              onChange={signInData.handleChange}
             />
             <Input 
               name='password'
-              value={signInData.password}
-              onChange={handleChangeSignIn}
+              value={signInData.values.password}
+              onChange={signInData.handleChange}
             />
   
-            <Button onClick={signIn}>Sing In</Button>
+            <Button>Sing In</Button>
           </form>
 
         </div>
@@ -77,29 +75,34 @@ const Login = () => {
         <div className="sign-up form-container">
           <h2>Create Account</h2>
           <span>Use your email for registration</span>
-          <form>
+          <form
+            onSubmit={signUp}
+          >
             <Input 
               name='name'
-              value={signUpDdata.name}
-              onChange={handleChangeSignUp}
+              value={signUpData.values.name}
+              onChange={signUpData.handleChange}
             />
             <Input 
               name='email'
-              value={signUpDdata.email}
-              onChange={handleChangeSignUp}
+              value={signUpData.values.email}
+              onChange={signUpData.handleChange}
+              pattern='^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
             />
             <Input
              name='password'
-             value={signUpDdata.password}
-             onChange={handleChangeSignUp}
+             value={signUpData.values.password}
+             onChange={signUpData.handleChange}
+             pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$'
             />
             <Input 
               name='password_confirmation'
-              value={signUpDdata.password_confirmation}
-              onChange={handleChangeSignUp}
+              value={signUpData.values.password_confirmation}
+              onChange={signUpData.handleChange}
+              pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$'
             />
   
-            <Button onClick={signUp}>Sign Up</Button>
+            <Button>Sign Up</Button>
           </form>
         </div>
 

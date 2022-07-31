@@ -1,14 +1,29 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
-input {
-  padding: 8px 15px;
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 70%;
-  margin: 8px;
+}
+
+input {
+  padding: 10px 15px;
+  width: 100%;
+  margin: 2px;
   background-color: #eee;
   border: none;
 }
 
 input::placeholder {
-  color: #111;
+  color: #000;
   font-family: 'Montserrat', sans-serif;
+  font-size: 13px
+}
+
+.error {
+  font-size: 10px;
+  text-align: left;
+  color: red;
 }
