@@ -82,6 +82,7 @@ const Login = () => {
               name='name'
               value={signUpData.values.name}
               onChange={signUpData.handleChange}
+              pattern='^([A-za-z]\s?){1,}$'
             />
             <Input 
               name='email'

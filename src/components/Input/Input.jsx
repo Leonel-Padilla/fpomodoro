@@ -19,20 +19,11 @@ const Input = ({name, ...props}) => {
     return placeholder
   }
 
-  const getTitle = ({ target }) => {
-    console.log(target.type)
-    return(
-      target.type.includes('password') ? 'Password must containt an uppercase, lowercase and a number' :
-      target.type.includes('email')    ? 'Enter an email valid format: "example@example.com" '    :
-      'This field is required'
-    )
-  }
-
   const validate = ({target}) => {
     switch (target.type){
       case 'password': {
         if(!(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/).test(target.value)){
-          setValidation({status: true, value:'Password must contain Uppercase, lowercase and a number.'})
+          setValidation({status: true, value:'Password must contain Uppercase, lowercase and a number and at least 8 characters.'})
         }else{
           setValidation({...validation, status: false})
         }
@@ -49,8 +40,8 @@ const Input = ({name, ...props}) => {
       }
 
       default : {
-        if(target.value === ''){
-          setValidation({status: true, value:'This field is required.'})
+        if(!(/^([A-za-z]\s?){1,}$/).test(target.value)){
+          setValidation({status: true, value:'This field is required and must contain only text and a space between words.'})
         }else{
           setValidation({...validation, status: false})
         }
@@ -68,7 +59,6 @@ const Input = ({name, ...props}) => {
       required
       placeholder={getPlaceholder()}
       onBlur={validate}
-      title={getTitle}
       {...props} 
     />
       <span className='error'>{validation.status ? validation.value : null}</span>
