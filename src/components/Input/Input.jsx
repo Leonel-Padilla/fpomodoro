@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Input.css'
 
-const Input = ({name, ...props}) => {
+const Input = ({name, compare, ...props}) => {
   const [validation, setValidation] = useState({status: false, value: ''})
 
   const getType = () => {
@@ -19,7 +19,16 @@ const Input = ({name, ...props}) => {
     return placeholder
   }
 
-  const validate = ({target}) => {
+  const compareValues = ({ target }) => {
+    console.log(compare)
+    if(target.value !== compare){
+      setValidation({status: true, value:'Passwords must be the same.'})
+    }else{
+      setValidation({...validation, status: false})
+    }
+  }
+
+  const validate = ({ target }) => {
     switch (target.type){
       case 'password': {
         if(!(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/).test(target.value)){
@@ -58,7 +67,7 @@ const Input = ({name, ...props}) => {
       type={getType()}
       required
       placeholder={getPlaceholder()}
-      onBlur={validate}
+      onBlur={compare ? compareValues : validate}
       {...props} 
     />
       <span className='error'>{validation.status ? validation.value : null}</span>

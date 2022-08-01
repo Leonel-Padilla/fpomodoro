@@ -98,7 +98,9 @@ const Login = () => {
               name='password_confirmation'
               value={signUpData.values.password_confirmation}
               onChange={signUpData.handleChange}
-              pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$'
+              compare={signUpData.values.password}
+              pattern={`${signUpData.values.password}`}
+              //pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$'
             />
   
             <Button>Sign Up</Button>
