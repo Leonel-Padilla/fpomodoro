@@ -25,7 +25,9 @@ const Login = () => {
 
     try{
       const response = await axios.post(`${URL}/login`, signInData.values)
+      console.log(response)
       sessionStorage.setItem('token', response.data.acess_token)
+
     }catch(error){
       console.log(error)
     }
@@ -34,10 +36,11 @@ const Login = () => {
   // Gets called when the user press the "sign up" button.
   const signUp = async (e) => {
     e.preventDefault()
-    
+
     try {
       const response = await axios.post(`${URL}/registro`, signUpData.values)
-      console.log(response.data)
+      console.log(response)
+      changeClass('remove')
     }catch(error){
       console.log(error)
     }
