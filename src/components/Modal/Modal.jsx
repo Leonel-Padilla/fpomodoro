@@ -1,6 +1,6 @@
 import './Modal.css'
 
-const Modal = ({ title, children, visible, onClose}) => { 
+const Modal = ({ title, children, visible, onClose, message}) => { 
   return (
     <div className={`overlay ${visible ? 'active' : null}`}>
       <div className='modal-container'>
@@ -13,8 +13,13 @@ const Modal = ({ title, children, visible, onClose}) => {
           </button>
         </div>
         
-        <div className='body'>
-          {children}
+        <div className='modal-body'>
+          {
+            title === 'Error' ?
+              <span className='error-message'>{message}</span>
+            :
+            children
+          }
         </div>
       </div>
     </div>

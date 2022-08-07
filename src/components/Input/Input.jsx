@@ -8,6 +8,7 @@ const Input = ({name, compare, noValidation, ...props}) => {
     return(
       name.includes('password') ? 'password' :
       name.includes('email')    ? 'email'    :
+      name.includes('time')     ? 'number'   :
       'text'
     )
   }

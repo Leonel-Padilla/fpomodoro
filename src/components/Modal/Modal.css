@@ -1,7 +1,7 @@
 * {
   margin: 0px;
-  
 }
+
 .overlay {
   transition: 0.6s;
   background-color: rgba(0, 0, 0, 0.5);
@@ -46,10 +46,6 @@
   
 }
 
-h2{
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
 .modal-title {
   color: #888;
 }
@@ -67,4 +63,14 @@ h2{
 
 .close-button:active {
   transform: scale(0.90);
+}
+
+.error-message {
+  color: black;
+}
+
+.modal-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
