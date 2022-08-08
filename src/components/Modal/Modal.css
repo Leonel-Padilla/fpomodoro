@@ -1,7 +1,7 @@
 * {
   margin: 0px;
-  
 }
+
 .overlay {
   transition: 0.6s;
   background-color: rgba(0, 0, 0, 0.5);
@@ -39,15 +39,14 @@
   transform: scale(0);
 }
 
-.header {
+.modal-header {
   display: flex;
   justify-content: space-between;
   padding: 10px;
   
 }
 
-h2 {
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+.modal-title {
   color: #888;
 }
 
@@ -66,8 +65,12 @@ h2 {
   transform: scale(0.90);
 }
 
-.body {
-  padding: 10px;
+.error-message {
+  color: black;
+}
+
+.modal-body {
   display: flex;
+  align-items: center;
   justify-content: center;
 }

@@ -1,0 +1,48 @@
+*{
+  padding: 0px;
+  margin: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.main-view-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(to right, #FF4B2B, #FF416C) no-repeat 0 0 / cover;
+}
+
+.pomodoro-container {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  width: 30%;
+  overflow: hidden;
+}
+
+.header {
+  color: white;
+  height: 8%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.body {
+  height: 100%;
+
+}
+
+.tasks-list {
+  background-color: black;
+  color: white;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer {
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

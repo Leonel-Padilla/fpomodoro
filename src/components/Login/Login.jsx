@@ -25,7 +25,9 @@ const Login = () => {
 
     try{
       const response = await axios.post(`${URL}/login`, signInData.values)
+      console.log(response)
       sessionStorage.setItem('token', response.data.acess_token)
+
     }catch(error){
       console.log(error)
     }
@@ -34,10 +36,11 @@ const Login = () => {
   // Gets called when the user press the "sign up" button.
   const signUp = async (e) => {
     e.preventDefault()
-    
+
     try {
       const response = await axios.post(`${URL}/registro`, signUpData.values)
-      console.log(response.data)
+      console.log(response)
+      changeClass('remove')
     }catch(error){
       console.log(error)
     }
@@ -98,7 +101,9 @@ const Login = () => {
               name='password_confirmation'
               value={signUpData.values.password_confirmation}
               onChange={signUpData.handleChange}
-              pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$'
+              compare={signUpData.values.password}
+              pattern={`${signUpData.values.password}`}
+              //pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$'
             />
   
             <Button>Sign Up</Button>

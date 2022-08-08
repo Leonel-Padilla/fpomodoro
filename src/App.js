@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import './App.css';
-import Login from './components/Login/Login'
+import MainView from './components/MainView/MainView';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Login/>}/>
+        <Route path='/' element={<MainView></MainView>}/>
       </Routes>
     </BrowserRouter>
   );

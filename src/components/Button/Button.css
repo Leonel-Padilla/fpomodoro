@@ -27,3 +27,53 @@ button.ghost {
   border: 1px solid white;
 	margin-top: 10px;
 }
+
+.small {
+	border-radius: 20px;
+	width: 140px;
+	font-size: 10px;
+	font-weight: none;
+	height: 35px;
+	transition: 30ms;
+}
+
+.options {
+	background-color: #eee;
+	color: black;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	font-size: 0px;
+	font-weight: bold;
+	height: 40px;
+	width: 40px;
+	padding: 0px 0px;
+	text-transform: none;
+	transition: 30ms;
+}
+
+.squared {
+	border-radius: 7px;
+}
+
+.controls {
+	height: 50px;
+	width: 50px;
+	padding: 0px;
+	background-color: whitesmoke;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid rgba(0, 0, 0, 0.1)
+}
+
+.add {
+	background-color: #28A745;
+}
+
+.edit {
+	background-color: #ffc107;
+	color: black;
+}
+
+.remove {
+	background-color: #c82333;
+}
