@@ -5,8 +5,8 @@ import Input from '../Input/Input'
 import './Timer.css'
 
 const Timer = () => {
-  const [workTime, setWorkTime]   = useState(5)
-  const [breakTime, setBreakTime] = useState(1)
+  const [workTime, setWorkTime]   = useState(25)
+  const [breakTime, setBreakTime] = useState(5)
   const [time, setTime] = useState({currentMinute: workTime, currentSecond: 0, title: 'Work Time'})
   const [id, setId]     = useState(0)  //This const saves the Interval Id in order for it to get removed later.
   const [modalData, setModalData] = useState({visible: false, title: ''})
@@ -103,6 +103,7 @@ const Timer = () => {
           <Button add squared>Accept</Button>
         </form>
       </Modal>
+      
       <h2 className='title'>{time.title}</h2>
       <h1 className='time'>{time.currentMinute}:{`${time.currentSecond < 10 ? '0' : ''}${time.currentSecond}`}</h1>
 
