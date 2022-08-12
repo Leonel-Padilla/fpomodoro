@@ -3,6 +3,7 @@ import Button from '../Button/Button'
 import Modal from '../Modal/Modal'
 import Input from '../Input/Input'
 import './Timer.css'
+import { playWorkFinished, playBreakFinished } from '../../audio/audioFunctions'
 
 const Timer = () => {
   const [workTime, setWorkTime]   = useState(25)
@@ -17,12 +18,13 @@ const Timer = () => {
     if (id === 0) {
       setId(
         setInterval(()=>{
-
           setTime(state => {
             if (state.currentMinute === 0 && state.currentSecond === 0) {
               if(state.title === 'Work Time') {
+                playWorkFinished()
                 return {currentMinute: breakTime, currentSecond: 0, title: 'Break Time'}
               }else {
+                playBreakFinished()
                 return {currentMinute: workTime, currentSecond: 0, title: 'Work Time'}
               }
 
@@ -78,7 +80,6 @@ const Timer = () => {
       <Modal 
       visible={modalData.visible} 
       title={modalData.title}
-      message={modalData.message}
       onClose={()=>setModalData({...modalData, visible: false})}
       >
         <form 
