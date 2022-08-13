@@ -1,5 +1,6 @@
 import React from 'react'
 import Timer from '../Timer/Timer'
+import List from '../List/List'
 import './MainView.css'
 
 const MainView = () => {
@@ -17,9 +18,9 @@ const MainView = () => {
             <Timer/>
           </div>
           
-          <div className='tasks-list'>
-            List
-          </div>
+          
+          <List></List>
+          
         </div>
       </div>
     </div>

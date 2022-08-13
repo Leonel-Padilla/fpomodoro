@@ -1,0 +1,62 @@
+.list-container {
+  height: 100%;
+}
+
+.list {
+  padding: 5px;
+}
+
+.task {
+  background-color: whitesmoke;
+  padding: 5px 15px;
+  color: black;
+  margin: 5px;
+  border-radius: 5px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.task:hover {
+  padding-left: 10px;
+  border-left: 5px solid #ddd;
+}
+
+.task-description {
+  width: 100%;
+  padding: 2px 5px;
+  overflow: hidden;
+  font-weight: bold;
+}
+
+.complete {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+.add-task {
+  background-color: transparent;
+  border: 2px dashed white;
+  color: white;
+}
+
+.add-task:hover {
+  padding-left: 15px;
+  border: 2px dashed white;
+  opacity: 0.7;
+}
+
+.check-logo {
+  background-color: #ddd;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.complete .check-logo {
+  background-color: rgb(5, 175, 5);
+}
+

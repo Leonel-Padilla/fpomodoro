@@ -3,10 +3,11 @@ import Button from '../Button/Button'
 import Modal from '../Modal/Modal'
 import Input from '../Input/Input'
 import './Timer.css'
+import { playWorkFinished, playBreakFinished } from '../../audio/audioFunctions'
 
 const Timer = () => {
-  const [workTime, setWorkTime]   = useState(5)
-  const [breakTime, setBreakTime] = useState(1)
+  const [workTime, setWorkTime]   = useState(25)
+  const [breakTime, setBreakTime] = useState(5)
   const [time, setTime] = useState({currentMinute: workTime, currentSecond: 0, title: 'Work Time'})
   const [id, setId]     = useState(0)  //This const saves the Interval Id in order for it to get removed later.
   const [modalData, setModalData] = useState({visible: false, title: ''})
@@ -17,12 +18,13 @@ const Timer = () => {
     if (id === 0) {
       setId(
         setInterval(()=>{
-
           setTime(state => {
             if (state.currentMinute === 0 && state.currentSecond === 0) {
               if(state.title === 'Work Time') {
+                playWorkFinished()
                 return {currentMinute: breakTime, currentSecond: 0, title: 'Break Time'}
               }else {
+                playBreakFinished()
                 return {currentMinute: workTime, currentSecond: 0, title: 'Work Time'}
               }
 
@@ -78,7 +80,6 @@ const Timer = () => {
       <Modal 
       visible={modalData.visible} 
       title={modalData.title}
-      message={modalData.message}
       onClose={()=>setModalData({...modalData, visible: false})}
       >
         <form 
@@ -103,6 +104,7 @@ const Timer = () => {
           <Button add squared>Accept</Button>
         </form>
       </Modal>
+      
       <h2 className='title'>{time.title}</h2>
       <h1 className='time'>{time.currentMinute}:{`${time.currentSecond < 10 ? '0' : ''}${time.currentSecond}`}</h1>
 
