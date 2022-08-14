@@ -19,7 +19,7 @@ const MainView = () => {
           </div>
           
           
-          <List></List>
+          <List className='list-container'/>
           
         </div>
       </div>

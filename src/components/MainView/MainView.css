@@ -46,3 +46,22 @@
   align-items: center;
   justify-content: center;
 }
+
+.list-container {
+  height: 400px;
+  overflow-y: scroll;
+}
+
+@media screen and (max-height: 920px){
+  .list-container {
+    height: 340px;
+  } 
+}
+
+@media screen and (max-height: 740px){
+  .list-container {
+    height: 250px;
+  } 
+}
+
+
