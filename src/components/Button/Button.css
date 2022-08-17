@@ -29,11 +29,12 @@ button.ghost {
 }
 
 .small {
-	border-radius: 20px;
-	width: 140px;
-	font-size: 10px;
-	font-weight: none;
-	height: 35px;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 0px 0px;
+	width: 80px;
+	height: 30px;
+	text-transform: uppercase;
 	transition: 30ms;
 }
 
@@ -70,7 +71,7 @@ button.ghost {
 }
 
 .edit {
-	background-color: #ffc107;
+	background-color: rgb(209, 209, 209);
 	color: black;
 }
 
