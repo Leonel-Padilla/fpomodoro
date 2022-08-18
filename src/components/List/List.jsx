@@ -1,35 +1,23 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Button from '../Button/Button'
 import Modal from '../Modal/Modal'
 import Input from '../Input/Input'
 import checkLogo from '../../images/check.png'
+import { TasksContext } from '../../context/TasksContext'
 import './List.css'
 
 const List = () => {
   const [modalData, setModalData]   = useState({visible: false, title: ''})
-  const [tasks, setTasks]           = useState([
-    {
-      id: 1,
-      task: 'Eat',
-      complete: false
-    },
-    {
-      id: 2,
-      task: 'Run',
-      complete: false
-    },
-    {
-      id: 3,
-      task: 'Drink',
-      complete: false
-    },
-    {
-      id: 4,
-      task: 'Call',
-      complete: false
-    }
-  ])
-  const [currentTask, setCurrentTask] = useState({
+  const { 
+    tasks,
+    addTask,
+    editTask,
+    deleteTask,
+    changeStatus,
+    setSelectedTask
+  } = useContext(TasksContext)
+
+  const [newTask, setNewTask] = useState({
     id: 0,
     task: '',
     complete: false
@@ -37,89 +25,58 @@ const List = () => {
   
   const handleOptionsClick = (id) => {
     setModalData({visible: true, title:'Edit'})
-    setCurrentTask(tasks.find(task => task.id === id))
+    setNewTask(tasks.find(task => task.id === id))
   }
 
-  const deleteTask = (e) => {
-    e.preventDefault()
-    setTasks(current => current.filter(task => task.id !== currentTask.id))
-    cancel()
-  }
-
-  const addTask = (e) => {
-    e.preventDefault()
-    setTasks(current => [...current, {...currentTask, id: (tasks.length + 2) }])
-    cancel()
-  }
-  
-  const editTask = (e) => {
-    e.preventDefault()
-
-    setTasks(current => 
-      current.map(task => {
-        if (task.id === currentTask.id){
-          return currentTask
-        }
-
-        return task
-      })
-    )
-
-    cancel()
-  }
-
-  const cancel = (e) => {
+  const closeModal = (e) => {
     if(e) e.preventDefault()
-    
     setModalData(current => ({...current, visible: false}))
-    setCurrentTask(current => ({...current, task:''}))
+    setNewTask(current => ({...current, task: ''}))
   }
 
-  const changeStatus = (currentTask) => {
-    const newTasks = tasks.map(task => {
-      if (task.id === currentTask.id){
-        task.complete = !task.complete
-      }
-      return task
-    })
-    
-    setTasks(newTasks)
+  const executeTaskFeature = (e, action, data) => {
+    e.preventDefault()
+    action(data)
+    closeModal()
   }
-
-
 
   return (
     <div className='list-container'>
       <Modal 
         visible={modalData.visible} 
         title={modalData.title} 
-        onClose={cancel}
+        onClose={closeModal}
       >
         <form 
         className='task-form'
-        onSubmit={modalData.title === 'Edit' ? editTask : addTask}
+        onSubmit={modalData.title === 'Edit' ? 
+            (e)=> executeTaskFeature(e, editTask, newTask) 
+          :
+            (e)=> executeTaskFeature(e, addTask, newTask)
+        }
         >
           <Input 
             className='task-input'
             noValidation
             name='task_description'
             required
-            value={currentTask.task}
-            onChange={(e)=>setCurrentTask(current => ({...current, task: e.target.value}))}
+            value={newTask.task}
+            onChange={(e)=>setNewTask(current => ({...current, task: e.target.value}))}
           />
           
           <div className='task-form-footer'>
             <div className='form-buttons-container'>
-              <Button type='submit' /*onClick={modalData.title === 'Edit' ? editTask : addTask}*/ squared add small>
+              <Button type='submit' squared add small>
                 Save
               </Button>
 
-              <Button onClick={cancel} squared small edit>
+              <Button onClick={closeModal} squared small edit>
                 Cancel
               </Button>
             </div>
 
-            <Button onClick={deleteTask} 
+            <Button 
+              onClick={(e)=>executeTaskFeature(e, deleteTask, newTask.id)} 
               style={{visibility: modalData.title === 'Edit' ? 'visible' : 'hidden'}}
               squared remove
               small>
@@ -135,7 +92,7 @@ const List = () => {
         {tasks.map(task =>
           <li className={`task ${task.complete ? 'complete' : ''}`} key={task.id}>
 
-            <span className='check-logo' onClick={()=> changeStatus(task)}>
+            <span className='check-logo' onClick={()=> changeStatus(task.id)}>
               <img src={checkLogo} alt="Check Logo"/>
             </span>
 
