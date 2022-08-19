@@ -2,14 +2,14 @@
 
 * {
   margin: 0px;
-  font-family: 'Montserrat', sans-serif;
 }
 
-span {
+.login-span {
   font-size: 12px;
 }
 
 .main-container {
+  font-family: 'Montserrat', sans-serif;
   background-color: whitesmoke;
   height: 100vh;
   display: flex;
@@ -51,7 +51,6 @@ span {
     height: 100%;
   }
 }
-
 
 
 form {

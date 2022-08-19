@@ -53,7 +53,7 @@ const Login = () => {
 
         <div className="sign-in form-container">
           <h2>Sign In</h2>
-          <span>Use you account</span>
+          <span className='login-span'>Use you account</span>
           <form
             onSubmit={signIn}
           >
@@ -75,7 +75,7 @@ const Login = () => {
   
         <div className="sign-up form-container">
           <h2>Create Account</h2>
-          <span>Use your email for registration</span>
+          <span className='login-span'>Use your email for registration</span>
           <form
             onSubmit={signUp}
           >
