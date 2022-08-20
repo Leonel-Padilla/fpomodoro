@@ -15,7 +15,7 @@ const Modal = ({ title, children, visible, onClose, message}) => {
         
         <div className='modal-body'>
           {
-            title === 'Error' ?
+            title === 'Error' || title === 'Éxito'?
               <span className='error-message'>{message}</span>
             :
             children
