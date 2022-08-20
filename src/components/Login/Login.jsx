@@ -5,11 +5,16 @@ import './Login.css'
 import URL from '../../URL/URL'
 import axios from 'axios'
 import useForm from '../../hooks/useForm'
+import { useState } from 'react'
+import Modal from '../Modal/Modal'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const signInData = useForm({email: '', password: ''})
   const signUpData = useForm({name: '', email: '', password: '', password_confirmation: ''})
+  const [modalData, setModalData]  = useState({visible: false, title: '', message: ''})
   const containerRef = useRef()
+  const navigate = useNavigate()
 
   const changeClass = (action) => {
     if(action === 'add'){
@@ -25,35 +30,47 @@ const Login = () => {
 
     try{
       const response = await axios.post(`${URL}/login`, signInData.values)
-      console.log(response)
-      sessionStorage.setItem('token', response.data.acess_token)
 
+      if (response.data.mensaje.includes('Incorrecto')){
+        throw new Error('Incorrect credentials')
+      }
+
+      sessionStorage.setItem('token', response.data.acess_token)
+      navigate('/')
     }catch(error){
-      console.log(error)
+      setModalData({visible: true, title: 'Error', message: error.message})
     }
   }
 
   // Gets called when the user press the "sign up" button.
   const signUp = async (e) => {
     e.preventDefault()
-
+    
     try {
       const response = await axios.post(`${URL}/registro`, signUpData.values)
-      console.log(response)
+      signUpData.setValues({name: '', email: '', password: '', password_confirmation: ''})
+      setModalData({visible: true, title: 'Éxito', message: response.data.mensaje})
       changeClass('remove')
+      
     }catch(error){
-      console.log(error)
+      setModalData({visible: true, title: 'Error', message: error.message})
     }
   }
 
   return (
     <div className="main-container">
+      <Modal 
+        visible={modalData.visible} 
+        onClose={()=> setModalData(current=> ({...current, visible: false}))}
+        title={modalData.title} 
+        message={modalData.message}
+      />
 
       <div className="container" ref={containerRef}>
 
         <div className="sign-in form-container">
           <h2>Sign In</h2>
-          <span>Use you account</span>
+          <span className='login-span'>Use you account</span>
           <form
             onSubmit={signIn}
           >
@@ -75,7 +92,7 @@ const Login = () => {
   
         <div className="sign-up form-container">
           <h2>Create Account</h2>
-          <span>Use your email for registration</span>
+          <span className='login-span'>Use your email for registration</span>
           <form
             onSubmit={signUp}
           >
@@ -103,7 +120,6 @@ const Login = () => {
               onChange={signUpData.handleChange}
               compare={signUpData.values.password}
               pattern={`${signUpData.values.password}`}
-              //pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$'
             />
   
             <Button>Sign Up</Button>

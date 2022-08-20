@@ -1,10 +1,10 @@
 *{
   padding: 0px;
   margin: 0px;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .main-view-container {
+  font-family: Arial, Helvetica, sans-serif;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -28,7 +28,6 @@
 
 .body {
   height: 100%;
-
 }
 
 .tasks-list {
