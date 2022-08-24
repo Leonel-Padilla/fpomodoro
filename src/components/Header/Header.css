@@ -1,0 +1,13 @@
+.main-view-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: white;
+  height: 8%;
+}
+
+.login-header-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

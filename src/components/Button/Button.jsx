@@ -27,7 +27,7 @@ const Button = ({ ghost, options, children, small, remove, edit, add, squared, s
   return (
     <button 
       {...props}
-      className={getClassName()}>
+      className={`${getClassName()} ${props.className}`}>
         {
         options ? 
           <img src={optionsLogo} alt='Options logo'></img>
