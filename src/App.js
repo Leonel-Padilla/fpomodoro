@@ -7,8 +7,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<MainView></MainView>}/>
-        <Route path='/login' element={<Login></Login>}/>
+        <Route path='/' element={<MainView/>}/>
+        <Route path='/login' element={sessionStorage.getItem('token') ? <MainView/> : <Login/> }/>
       </Routes>
     </BrowserRouter>
   );

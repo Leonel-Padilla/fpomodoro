@@ -1,6 +1,7 @@
 import React from 'react'
 import Timer from '../Timer/Timer'
 import List from '../List/List'
+import Header from '../Header/Header'
 import './MainView.css'
 
 const MainView = () => {
@@ -9,18 +10,14 @@ const MainView = () => {
     <div className='main-view-container'>
 
       <div className='pomodoro-container'>
-        <div className='header'>
-          <h2>HEADER</h2>
-        </div>
+        <Header/>
 
         <div className='body'>
           <div className='timer'>
             <Timer/>
           </div>
-          
-          
-          <List className='list-container'/>
-          
+        
+          <List className='list-container'/>  
         </div>
       </div>
     </div>
