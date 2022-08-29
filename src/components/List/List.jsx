@@ -1,21 +1,20 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import Button from '../Button/Button'
 import Modal from '../Modal/Modal'
 import Input from '../Input/Input'
 import checkLogo from '../../images/check.png'
-import { TasksContext } from '../../context/TasksContext'
 import './List.css'
+import useList from '../../hooks/useList'
 
 const List = () => {
   const [modalData, setModalData]   = useState({visible: false, title: ''})
-  const { 
+  const {
     tasks,
     addTask,
     editTask,
     deleteTask,
-    changeStatus,
-    setSelectedTask
-  } = useContext(TasksContext)
+    changeStatus
+  } = useList()
 
   const [newTask, setNewTask] = useState({
     id: 0,
