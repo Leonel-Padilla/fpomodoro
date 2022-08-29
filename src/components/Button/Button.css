@@ -24,7 +24,7 @@ button:active {
 
 button.ghost {
   background-color: transparent;
-  border: 1px solid white;
+  border: 1px solid rgba(255, 255, 255, 0.5);
 	margin-top: 10px;
 }
 
@@ -39,9 +39,9 @@ button.ghost {
 }
 
 .options {
-	background-color: #eee;
+	background-color: transparent;
 	color: black;
-	border: 1px solid rgba(0, 0, 0, 0.2);
+	border: none;
 	font-size: 0px;
 	font-weight: bold;
 	height: 40px;
@@ -63,7 +63,7 @@ button.ghost {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border: 2px solid rgba(0, 0, 0, 0.2)
+	border: none;
 }
 
 .add {

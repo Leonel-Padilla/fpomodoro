@@ -2,7 +2,6 @@ import './Header.css'
 import React from 'react'
 import Button from '../Button/Button'
 import { useNavigate } from 'react-router-dom'
-import userIcon from '../../images/user.png'
 
 
 const Header = () => {
@@ -22,7 +21,6 @@ const Header = () => {
         squared
         onClick={sessionStorage.getItem('token') ? ()=>LogOut() : ()=>navigate('/login')}
       >
-        <img src={userIcon} alt="User icon" />
         {sessionStorage.getItem('token') ? 'Logout' : 'Login'}
       </Button>
     </div>
