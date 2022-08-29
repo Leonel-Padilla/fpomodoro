@@ -25,53 +25,11 @@ export const TasksProvider = ({ children }) => {
       complete: false
     }
   ])
-  const [selectedTask, setSelectedTask] = useState({
-    id: 0,
-    task: '',
-    complete: false
-  })
-
-  const addTask = (newTask) => {
-    setTasks(current => [...current, {...newTask, id: (tasks.length + 2) }])
-  }
-
-  const editTask = (newTask) => {
-    setTasks(current => 
-      current.map(task => {
-        if (task.id === newTask.id){
-          return newTask
-        }
-
-        return task
-      })
-    )
-  }
-
-  const deleteTask = (id) => {
-    setTasks(current => current.filter(task => task.id !== id))
-  }
-
-  const changeStatus = (id) => {
-    setTasks(current => 
-      current.map(task => {
-        if (task.id === id){
-          return {...task, complete: !task.complete}
-        }
-
-        return task
-      })
-    )
-  }
 
   return (
     <TasksContext.Provider value={{
       tasks,
-      editTask,
-      addTask,
-      deleteTask,
-      changeStatus,
-      selectedTask,
-      setSelectedTask
+      setTasks
     }}>
       {children}
     </TasksContext.Provider>
