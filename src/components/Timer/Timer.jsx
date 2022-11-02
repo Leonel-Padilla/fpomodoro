@@ -71,7 +71,7 @@ const Timer = () => {
 
     setWorkTime(data.work_time)
     setBreakTime(data.break_time)
-    setTime({...time, currentMinute: data.work_time})
+    setTime(current => ({...current, currentMinute: data.work_time, currentSecond: 0}))
     setModalData({...modalData, visible:false})
   }
 
