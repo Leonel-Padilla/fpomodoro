@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/fpomodoro/static/css/main.bdc83ede.css",
+    "main.js": "/fpomodoro/static/js/main.bfe07256.js",
+    "static/js/787.5cd6d856.chunk.js": "/fpomodoro/static/js/787.5cd6d856.chunk.js",
+    "static/media/work time finished.mp3": "/fpomodoro/static/media/work time finished.5f1fee46481f6a9e2585.mp3",
+    "static/media/break time finished.mp3": "/fpomodoro/static/media/break time finished.4ecfa8af5207ebd5560f.mp3",
+    "index.html": "/fpomodoro/index.html",
+    "main.bdc83ede.css.map": "/fpomodoro/static/css/main.bdc83ede.css.map",
+    "main.bfe07256.js.map": "/fpomodoro/static/js/main.bfe07256.js.map",
+    "787.5cd6d856.chunk.js.map": "/fpomodoro/static/js/787.5cd6d856.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bdc83ede.css",
+    "static/js/main.bfe07256.js"
+  ]
+}
