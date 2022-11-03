@@ -18,6 +18,20 @@
   font-size: 110px;
 }
 
+@media screen and (max-width: 350px) {
+  .timer-container {
+    width: 100%;
+  }
+
+  .title {
+    font-size: 45px;
+  }
+  
+  .time {
+    font-size: 100px;
+  }
+}
+
 .controls-container {
   display: flex;
   width: 100%;
